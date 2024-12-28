@@ -3,15 +3,26 @@ import { View, FlatList, StyleSheet, Text } from 'react-native';
 import { useSelector } from 'react-redux';
 import MovieCard from '../components/MovieCard';
 
-// Assuming `movies` is available as a prop or from a global state
-const FavoritesScreen = ({ navigation, movies }) => {
-  const favoriteIds = useSelector(state => state.favorites.favorites);
+const FavoriteScreen = ({ navigation, movies }) => {
+  const favoriteIds = useSelector(state => {
+    console.log('State in useSelector:', state);  // Debugging statement
+    return state.favorite.favorites;
+  });
+
+  if (!movies) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.emptyText}>Movies data is not available</Text>
+      </View>
+    );
+  }
+
   const favoriteMovies = movies.filter(movie => favoriteIds.includes(movie.id));
 
   if (!favoriteMovies.length) {
     return (
       <View style={styles.container}>
-        <Text style={styles.emptyText}>No Favorites Yet!</Text>
+        <Text style={styles.emptyText}>No Favorite Yet!</Text>
       </View>
     );
   }
@@ -42,4 +53,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FavoritesScreen;
+export default FavoriteScreen;

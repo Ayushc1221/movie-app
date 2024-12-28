@@ -7,6 +7,7 @@ import {
   StyleSheet,
   Image,
   Dimensions,
+  Platform,
 } from 'react-native';
 
 // Import the responsive typography hook
@@ -39,7 +40,7 @@ const WelcomeScreen = ({ navigation }) => {
 
         {/* Title and Subtitle */}
         <Text style={[styles.title, { fontSize: typography.title.fontSize }]}>
-          Welcome to My Movies
+          Welcome to My Movies-App
         </Text>
         <Text style={[styles.subtitle, { fontSize: typography.subtitle.fontSize }]}>
           Let’s get to know you!
@@ -47,7 +48,7 @@ const WelcomeScreen = ({ navigation }) => {
 
         {/* Name Input */}
         <TextInput
-          style={styles.input}
+          style={[styles.input, { fontSize: typography.body.fontSize }]}
           placeholder="Your Name"
           placeholderTextColor="#aaa"
           value={name}
@@ -71,11 +72,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#fff',
+    padding: 10, // Add padding to avoid content touching edges
   },
   contentBox: {
-    width: width * 0.85,
-    height: height * 0.8, // Rectangular container with horizontal emphasis
-    padding: 100,
+    width: '90%', // Percentage-based width to adjust dynamically
+    height: '80%', // Responsive height
+    maxWidth: 500, // Maximum width for large devices
+    paddingHorizontal: '5%', // Padding for responsive layout
+    paddingVertical: '8%', // Vertical padding
     alignItems: 'center',
     backgroundColor: '#ffffff',
     borderRadius: 12,
@@ -86,9 +90,9 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   icon: {
-    width: 50,
-    height: 50,
-    marginBottom: 20,
+    width: '12%', // Relative width to the parent container
+    height: '10%', // Responsive height based on container
+    marginBottom: '10%',
   },
   title: {
     fontWeight: 'bold',
@@ -98,23 +102,23 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     color: '#666',
-    marginBottom: 20,
+    marginBottom: '5%', // Margin to create space between subtitle and input
     textAlign: 'center',
   },
   input: {
-    width: '50%', // Shorter input box
-    height: 40,
+    width: '70%', // Input width is based on screen size, with a max-width for large devices
+    height: 45, // Slightly larger input height
     borderWidth: 1,
     borderColor: '#ddd',
     borderRadius: 8,
     paddingHorizontal: 10,
-    fontSize: 14,
     backgroundColor: '#f9f9f9',
-    marginBottom: 15,
+    marginBottom: 20,
+    fontSize: 16, // Adjust font size inside input
   },
   button: {
-    width: '30%', // Shorter button
-    height: 40,
+    width: '50%', // Adjust the button size based on screen width
+    height: 50,
     backgroundColor: '#4A90E2',
     borderRadius: 8,
     justifyContent: 'center',
